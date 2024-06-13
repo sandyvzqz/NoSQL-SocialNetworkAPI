@@ -1,13 +1,12 @@
 const { Schema, model } = require('mongoose');
 const moment = require('moment');
 
-const UserSchema = new Schema(
-    {
+const UserSchema = new Schema({
         username: {
             type: String,
             unique: true,
-            trim: true,
-            required: true
+            required: true,
+            trim: true
         },
         email: {
             type: String,
