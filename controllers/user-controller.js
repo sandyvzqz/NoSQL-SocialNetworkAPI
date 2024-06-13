@@ -32,7 +32,7 @@ module.exports = {
         const dbUserData = await User.create(req.body);
         res.json(dbUserData);
         } catch (err){
-        res.status(404).json(err);
+            res.status(404).json(err);
         } 
     },
     //update a specific user by id
@@ -77,7 +77,7 @@ module.exports = {
         }
         res.json(dbUserData);
         } catch(err) {
-        res.status(400).json(err);    
+            res.status(400).json(err);    
         }
     },
     async deleteFriend(req, res){
