@@ -1,7 +1,7 @@
 // import required packages 
 const express = require('express');
 const routes = require('./routes'); 
-const dataBase = require('./config/connection')
+const db = require('./config/connection')
 
 // initialize the app with express
 const app = express();
@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true}));
 app.use(routes); 
 
 
-dataBase.once('open', ()=> {
+db.once('open', ()=> {
     app.listen(PORT, ()=> {
         console.log(`Connected on localhost:${PORT}`);
     })

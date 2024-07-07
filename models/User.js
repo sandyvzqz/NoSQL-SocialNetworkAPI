@@ -1,7 +1,6 @@
 const { Schema, model } = require('mongoose');
-const moment = require('moment');
 
-const UserSchema = new Schema({
+const userSchema = new Schema({
         username: {
             type: String,
             unique: true,
@@ -12,7 +11,7 @@ const UserSchema = new Schema({
             type: String,
             unique: true,
             required: true,
-            match: [/.+@.+\..+/]
+            match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/]
         },
         thoughts: [
             {
@@ -36,12 +35,12 @@ const UserSchema = new Schema({
     }
 );
 
-UserSchema.virtual('friendCount').get(function(){
+userSchema.virtual('friendCount').get(function(){
     return this.friends.length;
 });
 
 //compile our schema into a User model
-const User = model('User', UserSchema);
+const User = model('User', userSchema);
 
 //export the User model
 module.exports = User;

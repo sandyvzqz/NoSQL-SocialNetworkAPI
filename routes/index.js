@@ -5,7 +5,7 @@ router.use('/api', apiRoutes);
 
 // logs error status
 router.use((req, res)=>{
-    res.status(404).send('404 Error');
+    res.send('An error occurred.');
 });
 
 //export the router 

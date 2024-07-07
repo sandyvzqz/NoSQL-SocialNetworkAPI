@@ -1,20 +1,20 @@
 const router = require('express').Router();
 
 const {
-    getAllThought,
-    getThoughtById,
+    getThoughts,
+    getSingleThought,
     createThought,
     updateThought,
     deleteThought,
     createReaction,
-    deleteReaction
+    deleteReaction,
 } = require('../../controllers/thought-controller');
 
 // route to get and post all thoughts
-router.route('/').get(getAllThought).post(createThought);
+router.route('/').get(getThoughts).post(createThought);
 
 //route for specified thought
-router.route('/:id').get(getThoughtById).put(updateThought).delete(deleteThought);
+router.route('/:thoughtId').get(getSingleThought).put(updateThought).delete(deleteThought);
 
 //route to post reaction
 router.route('/:thoughtId/reactions').post(createReaction);
