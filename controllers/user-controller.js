@@ -21,7 +21,7 @@ module.exports = {
                 res.status(404).json({ message: 'No user found with that id.'});
                 return;
             }
-            res.json(dbUserData);
+            res.json(user);
         } catch(err){
             res.status(404).json(err);
         }
@@ -41,12 +41,12 @@ module.exports = {
         const user = await User.findOneAndUpdate(
             { _id: req.params.userId},
             { $set: req.body},  
-            { new: true, runValidators: true}
+            { new: true}, 
+            {runValidators: true}
         );
             
             if(!user){
-                res.status(404).json({ message: 'No user found with that id.'});
-                return;
+                return res.status(404).json({ message: 'No user found with that id.'});
             }
             res.json(user);
         } catch(err){
