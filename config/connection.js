@@ -5,6 +5,6 @@ const { connect, connection } = require('mongoose');
 connect('mongodb://localhost:27017/social-network');
 
 // enable mongo query logging 
-// mongoose.set('debug', true);
+mongoose.set('debug', true);
 
 module.exports = connection; 
