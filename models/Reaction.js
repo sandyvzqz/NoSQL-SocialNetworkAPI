@@ -22,12 +22,10 @@ const reactionSchema = new Schema({
 },
     {
         toJSON: {
-            // virtuals: true,
             getters: true
         },
-        id: false
     }
 );
 
 //export reactionSchema module
-module.exports= reactionSchema ; 
+module.exports = reactionSchema; 
