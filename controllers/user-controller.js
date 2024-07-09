@@ -74,6 +74,7 @@ module.exports = {
     async deleteUser(req, res){
         try{
             const userId = req.params.userId;
+            // checks if userId format matches the regex
             if (!userId.match(/^[0-9a-fA-F]{24}$/)){
                 return res.status(400).json({ message: "Invalid user ID"});
             }
@@ -88,14 +89,6 @@ module.exports = {
             console.error(err);
             res.status(500).json({ message: "Internal server error", error: err.message});
         }
-            // const user = await User.findOneAndDelete({ _id: req.params.userId});
-            // if (!user){
-            //  res.status(404).json({ message: "no user found with that ID!"});
-            // }
-            // res.status(200).json(user);
-        // } catch (err){
-            // res.status(500).json(err);
-        // }
     },
     async deleteFriend(req, res){
         try{
