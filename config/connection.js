@@ -1,5 +1,6 @@
 // requiring mongoose for connection
 const { connect, connection } = require('mongoose');
+const mongoose = require('mongoose');
 
 // connect to mongoose database
 connect('mongodb://localhost:27017/social-network');

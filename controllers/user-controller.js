@@ -73,14 +73,29 @@ module.exports = {
     },
     async deleteUser(req, res){
         try{
-            const user = await User.findOneAndDelete({ _id: req.params.userId});
+            const userId = req.params.userId;
+            if (!userId.match(/^[0-9a-fA-F]{24}$/)){
+                return res.status(400).json({ message: "Invalid user ID"});
+            }
+            const user = await User.findOneAndDelete({ _id: userId});
+
             if (!user){
-             res.status(404).json({ message: "no user found with that ID!"});
+                return res.status(404).json({ message: "No user found with that ID!"})
+
             }
             res.status(200).json(user);
-        } catch (err){
-            res.status(500).json(err);
+        } catch(err){
+            console.error(err);
+            res.status(500).json({ message: "Internal server error", error: err.message});
         }
+            // const user = await User.findOneAndDelete({ _id: req.params.userId});
+            // if (!user){
+            //  res.status(404).json({ message: "no user found with that ID!"});
+            // }
+            // res.status(200).json(user);
+        // } catch (err){
+            // res.status(500).json(err);
+        // }
     },
     async deleteFriend(req, res){
         try{
