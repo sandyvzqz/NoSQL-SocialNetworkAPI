@@ -15,6 +15,7 @@ To install this application, clone the repository in your local machine.
 
 # Demo Video
 The following video shows the functionality of the finished application. You can perform basic CRUD operations on the social-network-api database.
+- [Demo Video Link](https://drive.google.com/file/d/1xiREAsCIYBScw4gbPQf1Cgc3XZ9DCdK6/view)
 
 # Contribution
 The following articles helped me understand how to build this application.
