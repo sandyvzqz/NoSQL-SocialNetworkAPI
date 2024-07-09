@@ -12,6 +12,38 @@ To install this application, clone the repository in your local machine.
 - Now you can perform CRUD operations on the app via Insomnia, or Postman.
 
 ## Usage
+The following endpoints are available for testing. <br>
+**User Routes**
+
+- `/api/users`
+    - GET: retrieves all users
+    - POST: creates new user
+
+- `/api/users/:userId`
+  - GET: retrieves single user with given :userId
+  - DELETE: deletes user with given :userId
+  - PUT: updates user info based on :userId  
+
+- `/api/users/:userId/friends/:friendId`
+  - POST: adds :friendId to given :userId's friend list
+  - DELETE: removes :friendId from given :userId's friend list
+
+**Thought Routes**
+
+- `/api/thoughts`
+  - GET: retrieves all thoughts
+  - POST: creates new thought
+
+- `/api/thoughts/:thoughtId`
+  - GET: retrieves single thought with :thoughtId
+  - DELETE: deletes thought with given :thoughtId
+  - PUT: updates thought with given :thoughtId
+
+- `/api/thoughts/:thoughtId/reactions`
+  - POST: posts new reaction
+
+- `/api/thoughts/:thoughtId/reactions/:reactionId`
+  - DELETE: deletes reaction with given :reactionId
 
 ## Demo Video
 The following video shows the functionality of the finished application. You can perform basic CRUD operations on the social-network-api database.
