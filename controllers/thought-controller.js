@@ -61,25 +61,31 @@ module.exports = {
     // delete a specific thought by id
     async deleteThought(req, res){
         try{
-        const deleteThought = Thought.findOneAndDelete({ _id: params.thoughtId});
-            if (!deleteThought){
-                res.status(404).json({ message: 'No thought found with that id.'});
-                return;
-            }
-            const user = await User.findOneAndUpdate(
-                { thoughts: req.params.thoughtId },
-                { $pull: { thoughts: req.params.thoughtId}},
-                { new: true}
-            );
-
-            if(!user){
-                return res.status(404).json({message: "No user found with that ID!"});
-            }
-            res.json({ message: "Thought deleted successfully!"})
+        const thoughtId = req.params.thoughtId;
+        if (!thoughtId.match(/^[0-9a-fA-F]{24}$/)){
+            return res.status(400).json({ message: "Invalid thought ID"});
+        }
+        const deleteThought = await Thought.findOneAndDelete({ _id: thoughtId });
             
-            } catch (err) {
-                res.status(400).json(err);
+        if (!deleteThought){
+                return res.status(404).json({ message: 'No thought found with that id.'});
             }
+        // find user and update the thought
+        const user = await User.findOneAndUpdate(
+            { thoughts: thoughtId },
+            { $pull: { thoughts: thoughtId}},
+            { new: true}
+        );
+
+        if(!user){
+            return res.status(404).json({message: "No user found with that ID!"});
+        }
+        res.json({ message: "Thought deleted successfully!"})
+            
+        } catch (err) {
+            console.error(err);
+            res.status(400).json({ message: "Bad request", error: err.message});
+        }
     },
     // create a reaction or update existing
     async createReaction(req, res){
